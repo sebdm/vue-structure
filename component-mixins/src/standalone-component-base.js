@@ -48,6 +48,6 @@ export const StandaloneComponentBase = {
     }
   },
   destroyed () {
-    this.dispatchRegistry('removeInstance', { stateNamespace: this.stateNamespace })
+    this.dispatchRegistry('removeInstance', { namespace: this.stateNamespace })
   }
 }
