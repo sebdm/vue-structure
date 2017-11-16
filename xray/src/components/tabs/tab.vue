@@ -1,5 +1,5 @@
 <template>
-  <div class="tab" v-if="active">
+  <div class="tabs-content" v-if="active">
     <slot></slot>
   </div>
 </template>
@@ -21,23 +21,21 @@ export default {
       active: this.initialActive
     }
   },
-  mixins: [],
   methods: {
     setActive (trueFalse) {
       this.active = trueFalse
     }
   },
-  components: {
-  },
+  components: {},
   created () {
-    this.$parent.registerTab({ name: this.name, initialActive: this.initialActive, setActive: this.setActive, active: () => { return this.active } })
+    this.$parent.registerTab(this)
   },
   destroyed () {
-    this.$parent.unregisterTab(this.name)
+    this.$parent.unregisterTab(this)
   }
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
