@@ -65,9 +65,6 @@ export default {
 
       this.cloned = JSON.parse(JSON.stringify(this.model))
     }
-  },
-  created () {
-
   }
 }
 </script>

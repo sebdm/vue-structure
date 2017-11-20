@@ -6,5 +6,10 @@ export const DumbComponent = {
     model: {
       required: true
     }
+  },
+  computed: {
+    modelParsed() {
+      return this.model && typeof this.model === 'string' ? JSON.parse(this.model) : this.model
+    }
   }
 }

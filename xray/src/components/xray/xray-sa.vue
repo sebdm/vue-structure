@@ -1,10 +1,10 @@
 <template>
-  <xray :instance-id="fullId()" :model="model" @update:holdings="setHoldings" />
+  <xray-ce :instance-id="fullId()" :model="modelStringified" @update:holdings="setHoldings" />
 </template>
 
 <script>
 import { SmartComponent } from 'component-mixins'
-import Xray from './xray'
+import './xray-ce'
 
 export default {
   name: 'xray-sa',
@@ -12,15 +12,7 @@ export default {
   props: {
     stateRegistry: {
       required: false,
-      default: 'xray',
-      type: String
-    }
-  },
-  methods: {
-    setHoldings (holdings) {
-      this.dispatchNamespace('setHoldings', {
-        holdings
-      })
+      default: 'xray'
     }
   },
   data () {
@@ -28,10 +20,18 @@ export default {
       stateGetter: 'xrayData'
     }
   },
-  components: {
-    Xray
+  computed: {
+    modelStringified () {
+      return JSON.stringify(this.model)
+    }
   },
-  created () {}
+  methods: {
+    setHoldings (event) {
+      this.dispatchNamespace('setHoldings', {
+        holdings: event.detail[0]
+      })
+    }
+  }
 }
 </script>
 

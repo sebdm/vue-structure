@@ -10,12 +10,16 @@
       <tab name="Standalone Xray (xray2)">
         <xray-sa instance-id="xray2" state-namespace="xray2" />
       </tab>
+      <!-- <tab name="Xray CE">
+        <xray-ce />
+      </tab> -->
     </tabs>
   </div>
 </template>
 
 <script>
 import XraySa from '@/components/xray/xray-sa'
+import '@/components/xray/xray-ce'
 import EditHoldingsSa from '@/components/edit-holdings/edit-holdings-sa'
 import Tabs from '@/components/tabs/tabs'
 import Tab from '@/components/tabs/tab'
@@ -28,14 +32,7 @@ export default {
     Tabs,
     Tab
   },
-  data () {
-    return {
-      tabs: []
-    }
-  },
-  methods: {
-
-  },
+  methods: {},
   mounted () {
     this.$store.dispatch('xray1/setHoldings', {
       holdings: [

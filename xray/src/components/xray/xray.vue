@@ -3,8 +3,8 @@
     <section>
       <h1>This is {{ instanceId }}</h1>
       <div class="content">
-        <edit-holdings :model="model.holdings" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
-        <holdings :model="model.holdings" :instance-id="fullId('holdings')" />
+        <edit-holdings :model="modelParsed.holdings" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
+        <holdings :model="modelParsed.holdings" :instance-id="fullId('holdings')" />
       </div>
     </section>
   </div>
@@ -22,6 +22,9 @@ export default {
     setHoldings (holdings) {
       this.$emit('update:holdings', holdings)
     }
+  },
+  computed: {
+
   },
   components: {
     EditHoldings,
