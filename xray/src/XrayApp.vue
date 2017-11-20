@@ -34,21 +34,7 @@ export default {
     }
   },
   methods: {
-    randomizeTabs () {
-      this.tabs = []
-      for (let i = 0; i < Math.random() * 10; i++) {
-        this.tabs.push(i + 1)
-      }
-    }
-  },
-  created () {
-    this.randomizeTabs()
-    this.interval = setInterval(() => {
-      this.randomizeTabs()
-    }, 5000)
-  },
-  destroyed () {
-    clearInterval(this.interval)
+
   },
   mounted () {
     this.$store.dispatch('xray1/setHoldings', {
