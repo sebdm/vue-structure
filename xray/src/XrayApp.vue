@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <tabs>
-      <tab :initial-active="true" name="Standalone Xray (xray1)">
-        <xray-sa instance-id="xray1" state-registry="xray" state-namespace="xray1" state-getter="xrayData" />
+      <tab :initial-active="true" name="Standalone Edit Holdings (xray1)">
+        <edit-holdings-sa instance-id="editHoldings1" state-registry="xray" state-namespace="xray1" />
       </tab>
-      <tab name="Standalone Edit Holdings (xray1)">
-        <edit-holdings-sa instance-id="editHoldings1" state-registry="xray" state-namespace="xray1" state-getter="holdings" />
+      <tab name="Standalone Xray (xray1)">
+        <xray-sa instance-id="xray1" state-namespace="xray1" />
       </tab>
       <tab name="Standalone Xray (xray2)">
-        <xray-sa instance-id="xray2" state-registry="xray" state-namespace="xray2" state-getter="xrayData" />
+        <xray-sa instance-id="xray2" state-namespace="xray2" />
       </tab>
     </tabs>
   </div>

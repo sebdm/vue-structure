@@ -16,6 +16,11 @@ export default {
       })
     }
   },
+  data () {
+    return {
+      stateGetter: 'holdings'
+    }
+  },
   components: {
     EditHoldings
   }

@@ -10,10 +10,6 @@ export const SmartComponent = {
     stateNamespace: {
       required: true,
       type: String
-    },
-    stateGetter: {
-      required: true,
-      type: String
     }
   },
   computed: {
@@ -30,9 +26,6 @@ export const SmartComponent = {
     },
     dispatchNamespace (actionName, payload) {
       this.$store.dispatch(`${this.stateNamespace}/${actionName}`, payload)
-    },
-    loadData () {
-      this.$store.dispatch(`${this.stateNamespace}/loadData`)
     }
   },
   watch: {

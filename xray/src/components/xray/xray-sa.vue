@@ -9,6 +9,13 @@ import Xray from './xray'
 export default {
   name: 'xray-sa',
   mixins: [SmartComponent],
+  props: {
+    stateRegistry: {
+      required: false,
+      default: 'xray',
+      type: String
+    }
+  },
   methods: {
     setHoldings (holdings) {
       this.dispatchNamespace('setHoldings', {
@@ -16,12 +23,15 @@ export default {
       })
     }
   },
+  data () {
+    return {
+      stateGetter: 'xrayData'
+    }
+  },
   components: {
     Xray
   },
-  created () {
-
-  }
+  created () {}
 }
 </script>
 
