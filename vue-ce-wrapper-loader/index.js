@@ -7,13 +7,6 @@ const loaderUtils = require("loader-utils");
 module.exports = function(source) {
   const options = loaderUtils.getOptions(this);
 
-  const dir = this.context;
-  const fullFileName = this.resourcePath.substr(
-    this.resourcePath.lastIndexOf(path.sep) + 1
-  );
-  const fileName = fullFileName.split(".")[0];
-  const ceFilePath = `${dir}${path.sep}${fileName}-ce.js`;
-
   if (/export default\s*\{/.test(source)) {
     source = source.replace(/export default\s*\{/, 'const Component = {')
     source = source + `
