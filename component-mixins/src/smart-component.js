@@ -1,6 +1,6 @@
 import { ComponentBase } from './component-base'
 
-export const StandaloneComponentBase = {
+export const SmartComponent = {
   mixins: [ComponentBase],
   props: {
     stateRegistry: {
@@ -46,8 +46,5 @@ export const StandaloneComponentBase = {
     if (this.dataConfig) {
       this.dispatchNamespace('setDataConfig', { dataConfig: this.dataConfig })
     }
-  },
-  destroyed () {
-    this.dispatchRegistry('removeInstance', { namespace: this.stateNamespace })
   }
 }

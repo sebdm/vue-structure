@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import { NestedComponentBase } from 'component-mixins'
+import { DumbComponent } from 'component-mixins'
 import EditHoldings from '../edit-holdings/edit-holdings'
 import Holdings from '../holdings/holdings'
 
 export default {
   name: 'xray',
-  mixins: [NestedComponentBase],
+  mixins: [DumbComponent],
   methods: {
     setHoldings (holdings) {
       this.$emit('update:holdings', holdings)

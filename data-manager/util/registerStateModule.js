@@ -1,4 +1,4 @@
-export const registerStateModule = (moduleName, store, instanceModule) => {
+export const registerStateModule = (moduleName, store, instanceModule, options) => {
   let instances = [];
 
   store.registerModule(moduleName, {
@@ -35,4 +35,11 @@ export const registerStateModule = (moduleName, store, instanceModule) => {
       }
     }
   });
+
+  let namespaces = options && options.namespaces;
+  if (namespaces && namespaces.length) {
+    namespaces.forEach(namespace => {
+      store.dispatch(`${moduleName}/addInstance`, { namespace })
+    })
+  }
 };

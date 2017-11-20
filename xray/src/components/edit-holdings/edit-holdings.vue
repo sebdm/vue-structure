@@ -26,19 +26,22 @@
 </template>
 
 <script>
-import { NestedComponentBase } from 'component-mixins'
+import { DumbComponent } from 'component-mixins'
 
 export default {
   name: 'edit-holdings',
-  mixins: [NestedComponentBase],
+  mixins: [DumbComponent],
   data: () => {
     return {
       cloned: null
     }
   },
   watch: {
-    model () {
-      this.setCloned()
+    model: {
+      handler () {
+        this.setCloned()
+      },
+      immediate: true
     }
   },
   methods: {
@@ -64,7 +67,7 @@ export default {
     }
   },
   created () {
-    this.setCloned()
+
   }
 }
 </script>

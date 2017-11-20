@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <xray-sa instance-id="xray1" state-registry="xray" state-namespace="xray1" state-getter="xrayData" />
-    <edit-holdings-sa instance-id="editHoldings1" state-registry="xray" state-namespace="xray1" state-getter="holdings" />
-    <xray-sa instance-id="xray2" state-registry="xray" state-namespace="xray2" state-getter="xrayData" />
     <tabs>
-      <tab v-for="tab in tabs" :key="tab" :initial-active="tab === 1" :name="'Tab ' +  tab">
-        Content {{tab}}
+      <tab :initial-active="true" name="Standalone Xray (1)">
+        <xray-sa instance-id="xray1" state-registry="xray" state-namespace="xray1" state-getter="xrayData" />
+      </tab>
+      <tab name="Standalone Edit Holdings">
+        <edit-holdings-sa instance-id="editHoldings1" state-registry="xray" state-namespace="xray1" state-getter="holdings" />
+      </tab>
+      <tab name="Standalone Xray (2)">
+        <xray-sa instance-id="xray2" state-registry="xray" state-namespace="xray2" state-getter="xrayData" />
       </tab>
     </tabs>
   </div>
@@ -31,14 +34,17 @@ export default {
     }
   },
   methods: {
-
-  },
-  created () {
-    this.interval = setInterval(() => {
+    randomizeTabs () {
       this.tabs = []
       for (let i = 0; i < Math.random() * 10; i++) {
         this.tabs.push(i + 1)
       }
+    }
+  },
+  created () {
+    this.randomizeTabs()
+    this.interval = setInterval(() => {
+      this.randomizeTabs()
     }, 5000)
   },
   destroyed () {

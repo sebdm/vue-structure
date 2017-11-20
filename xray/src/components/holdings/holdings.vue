@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { NestedComponentBase } from 'component-mixins'
+import { DumbComponent } from 'component-mixins'
 export default {
   name: 'holdings',
-  mixins: [NestedComponentBase],
+  mixins: [DumbComponent],
   methods: {
   }
 }

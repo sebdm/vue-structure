@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { StandaloneComponentBase } from 'component-mixins'
+import { SmartComponent } from 'component-mixins'
 import Xray from './xray'
 
 export default {
   name: 'xray-sa',
-  mixins: [StandaloneComponentBase],
+  mixins: [SmartComponent],
   methods: {
     setHoldings (holdings) {
       this.dispatchNamespace('setHoldings', {

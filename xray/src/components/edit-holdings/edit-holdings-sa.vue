@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import { StandaloneComponentBase } from 'component-mixins'
+import { SmartComponent } from 'component-mixins'
 import EditHoldings from './edit-holdings'
 
 export default {
   name: 'edit-holdings-sa',
-  mixins: [StandaloneComponentBase],
+  mixins: [SmartComponent],
   methods: {
     setHoldings (holdings) {
       this.dispatchNamespace('setHoldings', {

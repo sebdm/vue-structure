@@ -13,7 +13,9 @@ const store = new Vuex.Store({
   }
 })
 
-registerXrayModule(store)
+registerXrayModule(store, {
+  namespaces: ['xray1', 'xray2']
+})
 
 Vue.config.productionTip = false
 
