@@ -1,3 +1,5 @@
+import { getXrayData } from 'data-services'
+
 export const setHoldings = ({ commit, dispatch, state }, { holdings }) => {
   // todo: compare holdings to state.holdings prior to firing the commit to prevent unnecessary commits (floods the dev tools...)
 
@@ -12,11 +14,9 @@ export const setDataConfig = ({ commit, dispatch, state }, { dataConfig }) => {
 }
 
 export const loadData = ({commit, state}) => {
-  // todo: sanity check for config and holdings, api call
-  commit('SET_XRAY_DATA', {
-    holdings: state.holdings,
-    stockSectors: {
-      something: 'something'
-    }
-  })
+  // todo: sanity check for config and holdings
+  getXrayData({ holdings: state.holdings, dataConfig: state.dataConfig })
+    .then((data) => {
+      commit('SET_XRAY_DATA', data)
+    })
 }

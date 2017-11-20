@@ -1,3 +1,3 @@
-export * from './src/component-base'
-export * from './src/dumb-component'
-export * from './src/smart-component'
+export * from './mixins/component-base'
+export * from './mixins/dumb-component'
+export * from './mixins/smart-component'
