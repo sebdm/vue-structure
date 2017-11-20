@@ -36,13 +36,14 @@ export const SmartComponent = {
     }
   },
   watch: {
-    stateNamespace () {
-      this.ensureInstance()
+    stateNamespace: {
+      handler () {
+        this.ensureInstance()
+      },
+      immediate: true
     }
   },
   created () {
-    this.ensureInstance()
-
     if (this.dataConfig) {
       this.dispatchNamespace('setDataConfig', { dataConfig: this.dataConfig })
     }

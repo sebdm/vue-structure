@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <tabs>
-      <tab :initial-active="true" name="Standalone Xray (1)">
+      <tab :initial-active="true" name="Standalone Xray (xray1)">
         <xray-sa instance-id="xray1" state-registry="xray" state-namespace="xray1" state-getter="xrayData" />
       </tab>
-      <tab name="Standalone Edit Holdings">
+      <tab name="Standalone Edit Holdings (xray1)">
         <edit-holdings-sa instance-id="editHoldings1" state-registry="xray" state-namespace="xray1" state-getter="holdings" />
       </tab>
-      <tab name="Standalone Xray (2)">
+      <tab name="Standalone Xray (xray2)">
         <xray-sa instance-id="xray2" state-registry="xray" state-namespace="xray2" state-getter="xrayData" />
       </tab>
     </tabs>
