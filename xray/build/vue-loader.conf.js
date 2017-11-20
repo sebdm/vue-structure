@@ -10,6 +10,9 @@ module.exports = {
       : config.dev.cssSourceMap,
     extract: isProduction
   }),
+  preLoaders: {
+    js: 'vue-ce-wrapper-loader'
+  },
   transformToRequire: {
     video: 'src',
     source: 'src',

@@ -15,7 +15,7 @@ import { DumbComponent } from 'component-mixins'
 import EditHoldings from '../edit-holdings/edit-holdings'
 import Holdings from '../holdings/holdings'
 
-export default {
+const Component = {
   name: 'xray',
   mixins: [DumbComponent],
   methods: {
@@ -31,6 +31,8 @@ export default {
     Holdings
   }
 }
+
+export default Component
 </script>
 
 <style>

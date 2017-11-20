@@ -4,7 +4,7 @@
 
 <script>
 import { SmartComponent } from 'component-mixins'
-import './xray-ce'
+import './xray'
 
 export default {
   name: 'xray-sa',
