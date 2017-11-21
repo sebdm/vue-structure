@@ -8,7 +8,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="holding in model" :key="holding.id">
+        <tr v-for="holding in modelParsed" :key="holding.id">
           <td>{{ holding.name }}</td>
           <td>{{ holding.weight }}</td>
         </tr>

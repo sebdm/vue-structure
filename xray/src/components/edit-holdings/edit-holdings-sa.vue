@@ -1,5 +1,5 @@
 <template>
-  <edit-holdings :instance-id="fullId()" :model="model" @update:holdings="setHoldings" />
+  <edit-holdings-ce :instance-id="fullId()" :model="JSON.stringify(model)" @update:holdings="setHoldings" />
 </template>
 
 <script>
@@ -10,9 +10,9 @@ export default {
   name: 'edit-holdings-sa',
   mixins: [SmartComponent],
   methods: {
-    setHoldings (holdings) {
+    setHoldings (event) {
       this.dispatchNamespace('setHoldings', {
-        holdings
+        holdings: event.detail[0]
       })
     }
   },

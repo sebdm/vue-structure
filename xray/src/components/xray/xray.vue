@@ -3,8 +3,8 @@
     <section>
       <h1>This is {{ instanceId }}</h1>
       <div class="content">
-        <edit-holdings :model="modelParsed.holdings" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
-        <holdings :model="modelParsed.holdings" :instance-id="fullId('holdings')" />
+        <edit-holdings-ce :model="JSON.stringify(modelParsed.holdings)" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
+        <holdings-ce :model="JSON.stringify(modelParsed.holdings)" :instance-id="fullId('holdings')" />
       </div>
     </section>
   </div>
@@ -19,8 +19,8 @@ const Component = {
   name: 'xray',
   mixins: [DumbComponent],
   methods: {
-    setHoldings (holdings) {
-      this.$emit('update:holdings', holdings)
+    setHoldings (event) {
+      this.$emit('update:holdings', event.detail[0])
     }
   },
   computed: {

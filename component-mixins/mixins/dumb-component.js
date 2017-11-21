@@ -8,8 +8,18 @@ export const DumbComponent = {
     }
   },
   computed: {
-    modelParsed() {
-      return this.model && typeof this.model === 'string' ? JSON.parse(this.model) : this.model
+  },
+  data() {
+    return {
+      modelParsed: null
+    }
+  },
+  watch: {
+    model: {
+      handler (value) {
+        this.modelParsed = value && typeof value === 'string' ? JSON.parse(value) : value
+      },
+      immediate: true
     }
   }
 }
