@@ -10,7 +10,8 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+    xray: './src/components/xray/xray.vue'
   },
   output: {
     path: config.build.assetsRoot,
