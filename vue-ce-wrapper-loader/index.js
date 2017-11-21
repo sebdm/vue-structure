@@ -15,11 +15,14 @@ export default Component`
 
   const code = `
 if (Component) {
-  let Vue = require('vue').default
-  let name = Component.name + '-ce'
+  const Vue = require('vue').default
+  const name = Component.name + '-ce'
 
   if (window.customElements && !window.customElements.get(name)) {
-    console.log('dynamically defining custom element')
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Dynamically adding custom element:', name)
+    }
+
     Vue.customElement(name, Component)
   }
 }
