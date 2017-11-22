@@ -1,6 +1,7 @@
 export const ComponentBase = {
   props: {
     instanceId: {
+      type: String
       // required: true
     }
   },
