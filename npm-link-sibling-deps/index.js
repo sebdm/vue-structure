@@ -51,8 +51,6 @@ for (let name in packages) {
   shelljs.cd(package.path)
   shelljs.exec(`npm link`)
   shelljs.cd(startingDirectory)
-
-  // console.log(package.name, package.siblingDeps)
 }
 
 // iterate packages and run npm link $siblingDep for each sibling dep
