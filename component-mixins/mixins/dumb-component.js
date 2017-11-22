@@ -4,7 +4,9 @@ export const DumbComponent = {
   mixins: [ComponentBase],
   props: {
     model: {
-      required: true
+      required: true,
+      type: String,
+      default: ''
     }
   },
   computed: {

@@ -12,6 +12,9 @@ export const ComponentBase = {
   methods: {
     fullId (instanceId) {
       return !instanceId ? this.instanceId : `${this.instanceId}.${instanceId}`
+    },
+    stringify (obj) {
+      return obj ? JSON.stringify(obj) : ''
     }
   }
 }
