@@ -4,8 +4,12 @@ const path = require("path");
 // const babelPluginTransformRelativePaths = require('babel-plugin-transform-relative-paths')
 const loaderUtils = require("loader-utils");
 
-module.exports = function(source) {
+module.exports = function(source, data, meta) {
   const options = loaderUtils.getOptions(this);
+
+  if (!/wrap-in-ce/.test(source)) {
+    return source
+  }
 
   if (/export default\s*\{/.test(source)) {
     source = source.replace(/export default\s*\{/, 'const Component = {')
