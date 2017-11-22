@@ -1,0 +1,17 @@
+{
+  "name": "npm-link-sibling-deps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "link-sibling-deps": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sebastian Lind <sebastian.lind@morningstar.com>",
+  "license": "ISC",
+  "dependencies": {
+    "shelljs": "^0.7.8"
+  }
+}
