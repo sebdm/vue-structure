@@ -9,10 +9,7 @@
       </tab>
       <tab name="Standalone Xray (xray2)">
         <xray-sa instance-id="xray2" state-namespace="xray2" />
-      </tab> 
-      <!-- <tab name="Xray CE">
-        <xray-ce />
-      </tab> -->
+      </tab>
     </tabs>
   </div>
 </template>

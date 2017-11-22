@@ -35,6 +35,9 @@ export default {
       })
       tab.setActive(true)
     }
+  },
+  beforeMount () {
+    // console.log('tabs before mount')
   }
 }
 </script>

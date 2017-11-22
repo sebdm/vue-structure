@@ -1,19 +1,27 @@
 <template>
   <div class="xray">
     <section>
-      <h1>This is {{ instanceId }}</h1>
+      <h1>Xray</h1>
       <div class="content">
-        <edit-holdings-ce :model="JSON.stringify(modelParsed.holdings)" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
-        <holdings-ce :model="JSON.stringify(modelParsed.holdings)" :instance-id="fullId('holdings')" />
+        <tabs>
+          <tab :initial-active="true" name="Edit holdings">
+            <edit-holdings-ce :model="stringify(modelParsed.holdings)" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
+          </tab>
+          <tab name="Holdings">
+            <holdings-ce :model="stringify(modelParsed.holdings)" :instance-id="fullId('holdings')" />
+          </tab>
+        </tabs>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+// wrap-in-ce
+
 import { DumbComponent } from 'component-mixins'
-import EditHoldings from '../edit-holdings/edit-holdings'
-import Holdings from '../holdings/holdings'
+import Tabs from '@/components/tabs/tabs'
+import Tab from '@/components/tabs/tab'
 
 const Component = {
   name: 'xray',
@@ -27,8 +35,8 @@ const Component = {
 
   },
   components: {
-    EditHoldings,
-    Holdings
+    Tabs,
+    Tab
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <xray-ce :instance-id="fullId()" :model="modelStringified" @update:holdings="setHoldings" />
+  <xray-ce :instance-id="fullId()" :model="stringify(model)" @update:holdings="setHoldings" />
 </template>
 
 <script>
@@ -21,9 +21,6 @@ export default {
     }
   },
   computed: {
-    modelStringified () {
-      return JSON.stringify(this.model)
-    }
   },
   methods: {
     setHoldings (event) {

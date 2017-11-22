@@ -1,5 +1,5 @@
 <template>
-  <edit-holdings-ce :instance-id="fullId()" :model="JSON.stringify(model)" @update:holdings="setHoldings" />
+  <edit-holdings-ce :instance-id="fullId()" :model="stringify(model)" @update:holdings="setHoldings" />
 </template>
 
 <script>

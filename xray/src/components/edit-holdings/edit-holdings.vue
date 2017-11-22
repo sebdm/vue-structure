@@ -26,6 +26,8 @@
 </template>
 
 <script>
+// wrap-in-ce
+
 import { DumbComponent } from 'component-mixins'
 
 export default {
