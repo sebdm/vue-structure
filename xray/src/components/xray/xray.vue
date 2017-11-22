@@ -5,10 +5,10 @@
       <div class="content">
         <tabs>
           <tab :initial-active="true" name="Edit holdings">
-            <edit-holdings-ce :model="stringify(modelParsed.holdings)" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
+            <mws-edit-holdings-ce :model="stringify(modelParsed.holdings)" :instance-id="fullId('editHoldings')" @update:holdings="setHoldings" />
           </tab>
           <tab name="Holdings">
-            <holdings-ce :model="stringify(modelParsed.holdings)" :instance-id="fullId('holdings')" />
+            <mws-holdings-ce :model="stringify(modelParsed.holdings)" :instance-id="fullId('holdings')" />
           </tab>
         </tabs>
       </div>
@@ -24,8 +24,9 @@ import Tabs from '@/components/tabs/tabs'
 import Tab from '@/components/tabs/tab'
 
 const Component = {
-  name: 'xray',
+  name: 'mws-xray',
   mixins: [DumbComponent],
+  props: {},
   methods: {
     setHoldings (event) {
       this.$emit('update:holdings', event.detail[0])
@@ -37,7 +38,9 @@ const Component = {
   components: {
     Tabs,
     Tab
-  }
+  },
+  created () {},
+  mounted () {}
 }
 
 export default Component

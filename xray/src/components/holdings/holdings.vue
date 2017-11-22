@@ -22,7 +22,7 @@
 
 import { DumbComponent } from 'component-mixins'
 export default {
-  name: 'holdings',
+  name: 'mws-holdings',
   mixins: [DumbComponent],
   methods: {
   }

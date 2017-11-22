@@ -1,5 +1,5 @@
 <template>
-  <xray-ce :instance-id="fullId()" :model="stringify(model)" @update:holdings="setHoldings" />
+  <mws-xray-ce :instance-id="fullId()" :model="stringify(model)" @update:holdings="setHoldings" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import { SmartComponent } from 'component-mixins'
 import './xray'
 
 export default {
-  name: 'xray-sa',
+  name: 'mws-xray-sa',
   mixins: [SmartComponent],
   props: {
     stateRegistry: {
@@ -20,15 +20,16 @@ export default {
       stateGetter: 'xrayData'
     }
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     setHoldings (event) {
       this.dispatchNamespace('setHoldings', {
         holdings: event.detail[0]
       })
     }
-  }
+  },
+  created () {},
+  mounted () {}
 }
 </script>
 

@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'tabs',
+  name: 'mws-tabs',
   data: () => {
     return {
       tabs: []

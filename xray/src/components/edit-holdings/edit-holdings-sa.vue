@@ -1,5 +1,5 @@
 <template>
-  <edit-holdings-ce :instance-id="fullId()" :model="stringify(model)" @update:holdings="setHoldings" />
+  <mws-edit-holdings-ce :instance-id="fullId()" :model="stringify(model)" @update:holdings="setHoldings" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import { SmartComponent } from 'component-mixins'
 import EditHoldings from './edit-holdings'
 
 export default {
-  name: 'edit-holdings-sa',
+  name: 'mws-edit-holdings-sa',
   mixins: [SmartComponent],
   methods: {
     setHoldings (event) {

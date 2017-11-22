@@ -31,7 +31,7 @@
 import { DumbComponent } from 'component-mixins'
 
 export default {
-  name: 'edit-holdings',
+  name: 'mws-edit-holdings',
   mixins: [DumbComponent],
   methods: {
     setHoldings (holdings) {
