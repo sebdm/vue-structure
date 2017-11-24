@@ -1,0 +1,14 @@
+{
+  "name": "mws-vuex-data-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sebastian Lind <sebastian.lind@morningstar.com>",
+  "license": "ISC",
+  "dependencies": {
+    "mws-data-services": "^1.0.0"
+  }
+}

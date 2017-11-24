@@ -6,7 +6,7 @@ const fs = require("fs");
 
 const startingDirectory = process.cwd()
 const startingInSibling = fs.existsSync(path.join(process.cwd(), "package.json"))
-const startingInName = startingDirectory.split(path.sep)[startingDirectory.split(path.sep).length - 1]
+const startingInName = !startingInSibling ? null : JSON.parse(fs.readFileSync(path.join(process.cwd(), "package.json"))).name
 const topDirectory = startingInSibling ? path.join(startingDirectory, '..') : startingDirectory
 
 // create the packages object
@@ -17,13 +17,13 @@ const packages = fs
     return fs.existsSync(path.join(topDirectory, file, "package.json"));
   })
   .map(file => {
+    let packageJson = JSON.parse(fs.readFileSync(path.join(topDirectory, file, "package.json")))
+    let name = packageJson.name
     return {
-      name: file,
+      name,
       path: path.join(topDirectory, file),
       siblingDeps: [],
-      packageJson: JSON.parse(
-        fs.readFileSync(path.join(topDirectory, file, "package.json"))
-      )
+      packageJson
     };
   })
   .reduce((o, package) => {
@@ -65,7 +65,7 @@ function linkPackage(package) {
   shelljs.cd(package.path)
   package.siblingDeps.forEach(dep => {
     shelljs.exec(`npm link ${dep}`)
-    console.log(`linking ${dep} for ${package.name}`)
+    console.log(`linked ${dep} for ${package.name}`)
   })
 
   shelljs.exec(`npm link`)
