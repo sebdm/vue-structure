@@ -22,4 +22,10 @@ export default {
     Xray,
     XraySa
   }
+  // //alternative approach if we only want to support custom elements
+  // install () {
+  //   // todo: sub MWS component modules here
+  //   require('@/components/ce/xray')
+  //   require('@/components/ce/xray-sa')
+  // }
 }
