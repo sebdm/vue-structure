@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Xray from '@/components/xray'
+import Xray from '@/xray'
 
 describe('xray.vue', () => {
   const Constructor = Vue.extend(Xray)

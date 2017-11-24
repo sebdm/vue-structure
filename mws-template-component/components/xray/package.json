@@ -12,7 +12,7 @@
     "unit:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --watch",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "node ../../node_modules/eslint/bin/eslint.js --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
     "mws-vuex-data-manager": "^1.0.0",

@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(devServer)
-      .waitForElementVisible('#preview', 5000)
+      .waitForElementVisible('[instance-id=xrayInstance1]', 50000)
       .assert.elementPresent('h1')
       .assert.containsText('h1', 'Xray')
       .end()
