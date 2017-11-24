@@ -5,7 +5,7 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(process.cwd(), dir)
 }
 
 function resolveDependency (dir) {
@@ -14,7 +14,7 @@ function resolveDependency (dir) {
 
 module.exports = {
   entry: {
-    preview: ['babel-polyfill', './src/preview.js']
+    preview: ['babel-polyfill', path.join(process.cwd(), 'preview', 'preview.js')]
   },
   output: {
     path: config.build.assetsRoot,

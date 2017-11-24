@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueCustomElement from 'vue-custom-element'
-import Xray from '@/components/xray'
-import XraySa from '@/components/xray-sa'
+import Xray from '@/xray'
+import XraySa from '@/xray-sa'
 // todo: import sub MWS component modules here
 
 Vue.use(VueCustomElement)
@@ -10,8 +10,8 @@ export default {
   install (Vue, options = { registerGlobally: false }) {
     // todo: Vue.use sub MWS component modules here
 
-    require('@/components/ce/xray')
-    require('@/components/ce/xray-sa')
+    require('@/ce/xray')
+    require('@/ce/xray-sa')
 
     if (options.registerGlobally === true) {
       Vue.component(Xray.name, Xray)

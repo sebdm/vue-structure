@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { init, registerXrayModule } from 'mws-vuex-data-manager'
-import XrayModule from './index'
+import XrayModule from '../src/index'
 
 init(Vue, Vuex, store => {
   registerXrayModule(store, {
