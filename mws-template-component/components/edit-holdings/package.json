@@ -1,8 +1,8 @@
 {
-  "name": "mws-v-xray",
+  "name": "mws-v-edit-holdings",
   "version": "1.0.0",
   "main": "src/index.js",
-  "description": "An x-ray component",
+  "description": "An edit holdings component",
   "author": "Sebastian Lind <sebastian.lind@gmail.com>",
   "private": false,
   "scripts": {
@@ -20,8 +20,7 @@
     "mws-vue-util": "^1.0.0",
     "vue": "^2.5.2",
     "vue-custom-element": "^1.4.2",
-    "vuex": "^3.0.1",
-    "mws-v-edit-holdings": "^1.0.0"
+    "vuex": "^3.0.1"
   },
   "engines": {
     "node": ">= 4.0.0",

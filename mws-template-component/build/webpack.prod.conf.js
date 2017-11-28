@@ -24,8 +24,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].js'),
+    chunkFilename: utils.assetsPath('js/[id].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -41,7 +41,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // }),
     // extract css into its own file
     new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css')
+      filename: utils.assetsPath('css/[name].css')
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
@@ -61,7 +61,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       inject: true,
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
+        // collapseWhitespace: true,
         removeAttributeQuotes: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
@@ -70,7 +70,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     // keep module.id stable when vender modules does not change
-    new webpack.HashedModuleIdsPlugin(),
+    // new webpack.HashedModuleIdsPlugin(),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -78,10 +78,8 @@ const webpackConfig = merge(baseWebpackConfig, {
         // any required modules inside node_modules are extracted to vendor (unless mws module)
         return (
           module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
+          /(\.vue)|(\.js)$/.test(module.resource) &&
+          module.resource.indexOf('node_modules') >= 0
           && !utils.isNonVendorModule(module)
         )
       }
@@ -105,7 +103,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 delete webpackConfig.entry
 webpackConfig.entry = {
-  bundle: ['babel-polyfill', './src/index.js']
+  [utils.pkg().name]: ['./src/index.js']
 }
 
 if (config.build.productionGzip) {

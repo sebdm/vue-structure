@@ -12,6 +12,8 @@
   "author": "Sebastian Lind <sebastian.lind@morningstar.com>",
   "license": "ISC",
   "dependencies": {
+    "args": "^3.0.7",
+    "rimraf": "^2.6.2",
     "shelljs": "^0.7.8"
   }
 }

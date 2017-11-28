@@ -6,7 +6,7 @@ export default {
   namespaced: true,
   actions,
   getters,
-  mutations: mutations,
+  mutations,
   state: () => {
     return {
       xrayData: {},

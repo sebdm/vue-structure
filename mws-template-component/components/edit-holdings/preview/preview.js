@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { init, registerXrayModule } from 'mws-vuex-data-manager'
-import Xray from '../src/index'
+import EditHoldings from '../src/index'
 
 init(Vue, Vuex, store => {
   registerXrayModule(store, {
@@ -17,21 +17,17 @@ init(Vue, Vuex, store => {
   })
 })
 
-Xray.install()
+EditHoldings.install()
 
 const holdings = [
   { name: 'Holding 1', weight: 40 },
   { name: 'Holding 2', weight: 30 },
   { name: 'Holding 3', weight: 30 }
 ]
-const config = {
-  doStuff: true
-}
 
 Vue.config.productionTip = false
 
-document.querySelector('[instance-id=xrayInstance1]').setAttribute('holdings', JSON.stringify(holdings))
-document.querySelector('[instance-id=xrayInstance1]').setAttribute('config', JSON.stringify(config))
+document.querySelector('[instance-id=editHoldingsInstance1]').setAttribute('holdings', JSON.stringify(holdings))
 
 /* eslint-disable no-new */
 // new Vue({

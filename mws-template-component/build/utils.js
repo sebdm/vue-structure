@@ -1,19 +1,33 @@
 'use strict'
 const path = require('path')
 const config = require('../config')
+const fs = require('fs')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-exports.nonVendorModulePatterns = [/mws-vue/, /mws-v-/]
+exports.nonVendorModulePatternStrings = ['mws-vue', 'mws-v-']
+exports.nonVendorModulePatterns = exports.nonVendorModulePatternStrings.map(r => new RegExp(r))
 
 exports.isNonVendorModule = function(module) {
   var hasMatch = false
-  this.nonVendorModulePatterns.forEach(pattern => {
-    if (pattern.test(module.resource)) {
+  this.nonVendorModulePatternStrings.forEach(pattern => {
+    if (new RegExp(pattern).test(module.resource)) {
       hasMatch = true
     }
   })
 
   return hasMatch
+}
+
+exports.getCwdName = function() {
+  return process.cwd().split(path.sep)[process.cwd().split(path.sep).length - 1]
+}
+
+exports.getCwdPrefixedName = function() {
+  return ['mws', this.getCwdName()].join('-')
+}
+
+exports.pkg = function() {
+  return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json')))
 }
 
 exports.assetsPath = function (_path) {
