@@ -1,9 +1,9 @@
 {
-  "name": "mws-v-edit-holdings",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "main": "src/index.js",
-  "description": "An edit holdings component",
-  "author": "Sebastian Lind <sebastian.lind@gmail.com>",
+  "main": "index.js",
+  "description": "{{description}}",
+  "author": "Bundler",
   "private": false,
   "scripts": {
     "dev": "node ../../build/dev-server.js",
@@ -16,10 +16,7 @@
     "lint": "node ../../node_modules/eslint/bin/eslint.js --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "mws-vue-util": "^1.0.0",
-    "vue": "^2.5.2",
-    "vue-custom-element": "^1.4.2",
-    "vuex": "^3.0.1"
+    
   },
   "engines": {
     "node": ">= 4.0.0",

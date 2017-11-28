@@ -1,8 +1,8 @@
 {
-  "name": "mws-v-edit-holdings",
+  "name": "mws-v-security-report",
   "version": "1.0.0",
   "main": "src/index.js",
-  "description": "An edit holdings component",
+  "description": "A security report component",
   "author": "Sebastian Lind <sebastian.lind@gmail.com>",
   "private": false,
   "scripts": {
