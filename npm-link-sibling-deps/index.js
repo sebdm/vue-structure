@@ -1,3 +1,5 @@
+'use strict'
+
 const shelljs = require("shelljs");
 const path = require("path");
 const fs = require("fs");
@@ -26,57 +28,55 @@ module.exports = function linkSiblingDeps(options) {
         return fs.existsSync(path.join(topDirectory, file, "package.json"));
       })
       .map(file => {
-        let packageJson = JSON.parse(
+        let pkgJson = JSON.parse(
           fs.readFileSync(path.join(topDirectory, file, "package.json"))
         );
-        let name = packageJson.name;
+        let name = pkgJson.name;
         return {
           name,
           path: path.join(topDirectory, file),
           siblingDeps: [],
-          packageJson
+          pkgJson
         };
       })
-      .reduce((o, package) => {
-        return Object.assign(o, { [package.name]: package });
+      .reduce((o, pkg) => {
+        return Object.assign(o, { [pkg.name]: pkg });
       }, packages);
   });
 
-  linkPackage(packages[startingInName]);
+  linkpkg(packages[startingInName]);
 
-  function linkPackage(package, dependenciesOrigin = {}) {
-    if (hasLinked[package.name]) {
+  function linkpkg(pkg, dependenciesOrigin = {}) {
+    if (hasLinked[pkg.name]) {
       return false;
     }
 
-    hasLinked[package.name] = true;
+    hasLinked[pkg.name] = true;
 
-    const deps = package.packageJson.dependencies;
-    const devDeps = package.packageJson.devDependencies;
+    const deps = pkg.pkgJson.dependencies;
+    const devDeps = pkg.pkgJson.devDependencies;
 
-    if (!dependenciesOrigin[package.name]) {
-      dependenciesOrigin[package.name] = {
-        full: package.path,
-        modulePath: package.path,
-        module: package.name
+    if (!dependenciesOrigin[pkg.name]) {
+      dependenciesOrigin[pkg.name] = {
+        full: pkg.path,
+        modulePath: pkg.path,
+        module: pkg.name
       };
     }
 
     const ownDependenciesOrigin = getDependenciesOriginPathMap(
-      package.path,
-      package.packageJson.dependencies,
+      pkg.path,
+      pkg.pkgJson.dependencies,
       packages
     );
     Object.assign(
       ownDependenciesOrigin,
       getDependenciesOriginPathMap(
-        package.path,
-        package.packageJson.devDependencies,
+        pkg.path,
+        pkg.pkgJson.devDependencies,
         packages
       )
     );
-
-    // console.log(ownDependenciesOrigin)
 
     for (let key in ownDependenciesOrigin) {
       if (dependenciesOrigin[key]) {
@@ -86,14 +86,12 @@ module.exports = function linkSiblingDeps(options) {
       }
     }
 
-    dependenciesOrigin = Object.assign({}, dependenciesOrigin);
-
     if (deps) {
       for (let key in deps) {
         if (packages[key]) {
-          linkPackage(packages[key], dependenciesOrigin);
-          if (package.siblingDeps.indexOf(key) < 0) {
-            package.siblingDeps.push(key);
+          linkpkg(packages[key], dependenciesOrigin);
+          if (pkg.siblingDeps.indexOf(key) < 0) {
+            pkg.siblingDeps.push(key);
           }
         }
       }
@@ -102,22 +100,44 @@ module.exports = function linkSiblingDeps(options) {
     if (devDeps) {
       for (let key in devDeps) {
         if (packages[key]) {
-          linkPackage(packages[key], dependenciesOrigin);
-          if (package.siblingDeps.indexOf(key) < 0) {
-            package.siblingDeps.push(key);
+          linkpkg(packages[key], dependenciesOrigin);
+          if (pkg.siblingDeps.indexOf(key) < 0) {
+            pkg.siblingDeps.push(key);
           }
         }
       }
     }
 
-    if (!fs.existsSync(path.join(package.path, "node_modules"))) {
-      fs.mkdirSync(path.join(package.path, "node_modules"));
+    if (!fs.existsSync(path.join(pkg.path, "node_modules"))) {
+      fs.mkdirSync(path.join(pkg.path, "node_modules"));
+    }
+
+    console.log(
+      "==============================================================================="
+    );
+
+    console.log(pkg.name)
+
+    let uninstalledExternalpackagesString = Object.keys(ownDependenciesOrigin).filter(function(key) {
+      if (fs.existsSync(path.join(pkg.path, 'node_modules', key))) {
+        return false;
+      }
+
+      return !packages[key];
+    }).join(" ");
+
+    if (uninstalledExternalpackagesString) {
+      console.log('installing: ', uninstalledExternalpackagesString)
+
+      shelljs.cd(pkg.path)
+      shelljs.exec(`npm install ${uninstalledExternalpackagesString}`);
+      shelljs.cd(options.topFoldersRoot)
     }
 
     for (var key in ownDependenciesOrigin) {
       var dep = ownDependenciesOrigin[key];
-      if (dep.modulePath !== package.path) {
-        const p = path.join(package.path, "node_modules", dep.module);
+      if (dep.modulePath !== pkg.path) {
+        const p = path.join(pkg.path, "node_modules", dep.module);
         rimraf.sync(p);
 
         console.log(
@@ -135,10 +155,6 @@ module.exports = function linkSiblingDeps(options) {
         }
       }
     }
-
-    shelljs.cd(package.path)
-    shelljs.exec(`npm install`);
-    shelljs.cd(options.topFoldersRoot)
 
     return true;
   }
