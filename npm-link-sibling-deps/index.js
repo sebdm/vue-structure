@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 const shelljs = require("shelljs");
 const path = require("path");
@@ -11,11 +11,13 @@ module.exports = function linkSiblingDeps(options) {
   );
   const startingInName = !startingInSibling
     ? null
-    : JSON.parse(fs.readFileSync(path.join(options.startingDirectory, "package.json")))
-        .name;
-  const topDirectories = options.topFoldersAbsolute === true ? options.topFolders : options.topFolders.map(d =>
-    path.join(options.topFoldersRoot, d)
-  );
+    : JSON.parse(
+        fs.readFileSync(path.join(options.startingDirectory, "package.json"))
+      ).name;
+  const topDirectories =
+    options.topFoldersAbsolute === true
+      ? options.topFolders
+      : options.topFolders.map(d => path.join(options.topFoldersRoot, d));
 
   const packages = {};
   const hasLinked = {};
@@ -44,9 +46,9 @@ module.exports = function linkSiblingDeps(options) {
       }, packages);
   });
 
-  linkpkg(packages[startingInName]);
+  linkPackage(packages[startingInName]);
 
-  function linkpkg(pkg, dependenciesOrigin = {}) {
+  function linkPackage(pkg, dependenciesOrigin = {}) {
     if (hasLinked[pkg.name]) {
       return false;
     }
@@ -89,7 +91,7 @@ module.exports = function linkSiblingDeps(options) {
     if (deps) {
       for (let key in deps) {
         if (packages[key]) {
-          linkpkg(packages[key], dependenciesOrigin);
+          linkPackage(packages[key], dependenciesOrigin);
           if (pkg.siblingDeps.indexOf(key) < 0) {
             pkg.siblingDeps.push(key);
           }
@@ -100,7 +102,7 @@ module.exports = function linkSiblingDeps(options) {
     if (devDeps) {
       for (let key in devDeps) {
         if (packages[key]) {
-          linkpkg(packages[key], dependenciesOrigin);
+          linkPackage(packages[key], dependenciesOrigin);
           if (pkg.siblingDeps.indexOf(key) < 0) {
             pkg.siblingDeps.push(key);
           }
@@ -116,22 +118,24 @@ module.exports = function linkSiblingDeps(options) {
       "==============================================================================="
     );
 
-    console.log(pkg.name)
+    console.log(pkg.name);
 
-    let uninstalledExternalpackagesString = Object.keys(ownDependenciesOrigin).filter(function(key) {
-      if (fs.existsSync(path.join(pkg.path, 'node_modules', key))) {
-        return false;
-      }
+    let uninstalledExternalpackagesString = Object.keys(ownDependenciesOrigin)
+      .filter(function(key) {
+        if (fs.existsSync(path.join(pkg.path, "node_modules", key))) {
+          return false;
+        }
 
-      return !packages[key];
-    }).join(" ");
+        return !packages[key];
+      })
+      .join(" ");
 
     if (uninstalledExternalpackagesString) {
-      console.log('installing: ', uninstalledExternalpackagesString)
+      console.log("installing: ", uninstalledExternalpackagesString);
 
-      shelljs.cd(pkg.path)
+      shelljs.cd(pkg.path);
       shelljs.exec(`npm install ${uninstalledExternalpackagesString}`);
-      shelljs.cd(options.topFoldersRoot)
+      shelljs.cd(options.topFoldersRoot);
     }
 
     for (var key in ownDependenciesOrigin) {
@@ -149,9 +153,9 @@ module.exports = function linkSiblingDeps(options) {
         try {
           fs.symlinkSync(dep.full, p, "dir");
         } catch (ex) {
-          console.log('EXCEPTION')
-          console.log(ex)
-          console.log(dep)
+          console.log("EXCEPTION");
+          console.log(ex);
+          console.log(dep);
         }
       }
     }

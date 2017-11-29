@@ -9,6 +9,6 @@ bundler.bundle({
 }, {
   name: 'my-bundle',
   description: 'My bundle',
-  linkSiblingsTopFolders: ['.', './mws-template-component/components'],
+  linkSiblingsTopFolders: ['.', './mws-components/components'],
   cwd: process.cwd()
 })

@@ -1,0 +1,35 @@
+{
+  "name": "{{prefix}}-{{name}}",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "description": "{{description}}",
+  "author": "{{author}} <{{authorEmail}}>",
+  "private": false,
+  "scripts": {
+    "dev": "node ../../build/dev-server.js",
+    "start": "npm run dev",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "unit:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --watch",
+    "e2e": "node test/e2e/runner.js",
+    "test": "npm run unit && npm run e2e",
+    "lint": "node ../../node_modules/eslint/bin/eslint.js --ext .js,.vue src test/unit/specs test/e2e/specs"
+  },
+  "dependencies": {
+    "mws-vue-util": "^1.0.0",
+    "vue": "^2.5.2",
+    "vue-custom-element": "^1.4.2",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "mws-vuex-data-manager": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
