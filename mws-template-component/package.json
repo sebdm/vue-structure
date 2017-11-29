@@ -15,11 +15,6 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "mws-vuex-data-manager": "^1.0.0",
-    "mws-vue-util": "^1.0.0",
-    "vue": "^2.5.2",
-    "vue-custom-element": "^1.4.2",
-    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

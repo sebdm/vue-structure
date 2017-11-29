@@ -1,0 +1,19 @@
+{
+  "name": "mws-component-creator",
+  "version": "1.0.0",
+  "description": "Creates a new component from template",
+  "main": "index.js",
+  "bin": {
+    "create-component": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^7.1.2",
+    "shelljs": "^0.7.6",
+    "copy-template-dir": "^1.3.0"
+  }
+}

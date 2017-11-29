@@ -1,9 +1,9 @@
 {
-  "name": "mws-v-edit-holdings",
+  "name": "{{prefix}}-{{name}}",
   "version": "1.0.0",
   "main": "src/index.js",
-  "description": "An edit holdings component",
-  "author": "Sebastian Lind <sebastian.lind@gmail.com>",
+  "description": "{{description}}",
+  "author": "{{author}} <{{authorEmail}}>",
   "private": false,
   "scripts": {
     "dev": "node ../../build/dev-server.js",
