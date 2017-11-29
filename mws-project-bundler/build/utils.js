@@ -7,21 +7,18 @@ module.exports = (options = {}) => {
   const config = require("../config")(options);
   let _exports = {};
 
-  _exports.nonVendorModulePatternStrings = ["mws-vue", "mws-v-"];
-  _exports.nonVendorModulePatterns = _exports.nonVendorModulePatternStrings.map(
-    r => new RegExp(r)
-  );
-
+  _exports.nonVendorModulePatterns = [/mws-vue/, /mws-v-/]
+  
   _exports.isNonVendorModule = function(module) {
-    var hasMatch = false;
-    this.nonVendorModulePatternStrings.forEach(pattern => {
-      if (new RegExp(pattern).test(module.resource)) {
-        hasMatch = true;
+    var hasMatch = false
+    this.nonVendorModulePatterns.forEach(pattern => {
+      if (pattern.test(module.resource)) {
+        hasMatch = true
       }
-    });
-
-    return hasMatch;
-  };
+    })
+  
+    return hasMatch
+  }
 
   _exports.getCwdName = function() {
     return options.cwd.split(path.sep)[

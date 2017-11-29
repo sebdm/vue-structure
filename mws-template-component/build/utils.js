@@ -4,13 +4,12 @@ const config = require('../config')
 const fs = require('fs')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-exports.nonVendorModulePatternStrings = ['mws-vue', 'mws-v-']
-exports.nonVendorModulePatterns = exports.nonVendorModulePatternStrings.map(r => new RegExp(r))
+exports.nonVendorModulePatterns = [/mws-vue/, /mws-v-/]
 
 exports.isNonVendorModule = function(module) {
   var hasMatch = false
-  this.nonVendorModulePatternStrings.forEach(pattern => {
-    if (new RegExp(pattern).test(module.resource)) {
+  this.nonVendorModulePatterns.forEach(pattern => {
+    if (pattern.test(module.resource)) {
       hasMatch = true
     }
   })
