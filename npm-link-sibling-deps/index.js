@@ -140,7 +140,7 @@ module.exports = function linkSiblingDeps(options) {
 
     for (var key in ownDependenciesOrigin) {
       var dep = ownDependenciesOrigin[key];
-      if (dep.modulePath !== pkg.path) {
+      if (dep.modulePath !== pkg.path && fs.existsSync(dep.full)) {
         const p = path.join(pkg.path, "node_modules", dep.module);
         rimraf.sync(p);
 
@@ -173,8 +173,9 @@ module.exports = function linkSiblingDeps(options) {
           module: key
         };
       } else {
+        const full = path.join(originPath, "node_modules", key);
         result[key] = {
-          full: path.join(originPath, "node_modules", key),
+          full,
           modulePath: originPath,
           module: key
         };
