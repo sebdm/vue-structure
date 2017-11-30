@@ -9,6 +9,7 @@
   "author": "Sebastian Lind <sebastian.lind@morningstar.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "lodash": "^4.17.4"
   }
 }

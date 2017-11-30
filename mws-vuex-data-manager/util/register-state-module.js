@@ -9,12 +9,12 @@ export const registerStateModule = (moduleName, store, instanceModule, options) 
       }
     },
     actions: {
-      addInstance({ commit, state }, { namespace }) {
+      addInstance({ commit, state }, { namespace, initialState }) {
         if (state.instances.find(_namespace => _namespace === namespace)) {
           return;
         }
 
-        commit("ADD_INSTANCE", { namespace });
+        commit("ADD_INSTANCE", { namespace, initialState });
       },
       removeInstance({ commit, state }, { namespace }) {
         if (!state.instances.find(_namespace => _namespace === namespace)) {
@@ -25,9 +25,9 @@ export const registerStateModule = (moduleName, store, instanceModule, options) 
       }
     },
     mutations: {
-      ADD_INSTANCE(state, { namespace }) {
+      ADD_INSTANCE(state, { namespace, initialState }) {
         state.instances.push(namespace);
-        store.registerModule(`${namespace}`, instanceModule);
+        store.registerModule(`${namespace}`, Object.assign({}, instanceModule, { state: Object.assign(instanceModule.state(), initialState) }));
       },
       REMOVE_INSTANCE(state, { namespace }) {
         state.instances.splice(state.instances.indexOf(namespace), 1);
@@ -37,9 +37,16 @@ export const registerStateModule = (moduleName, store, instanceModule, options) 
   });
 
   let namespaces = options && options.namespaces;
-  if (namespaces && namespaces.length) {
-    namespaces.forEach(namespace => {
-      store.dispatch(`${moduleName}/addInstance`, { namespace })
-    })
+  if (namespaces && (namespaces.length || typeof namespaces === 'object')) {
+    for (let key in namespaces) {
+      let namespace = namespaces[key]
+      let namespaceId
+      if (typeof namespace === 'object') {
+        namespaceId = key
+      } else {
+        namespaceId = namespace
+      }
+      store.dispatch(`${moduleName}/addInstance`, { namespace: namespaceId, initialState: namespace })
+    }
   }
 };

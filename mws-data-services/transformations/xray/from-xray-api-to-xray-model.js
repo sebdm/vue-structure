@@ -1,4 +1,5 @@
-import { dictionaryLookup } from './helper/dictionary-helper.js';
+import { dictionaryLookup } from '../helper/dictionary-helper.js';
+import { each } from 'lodash';
 
 export function fromXrayApiToXrayModel(sourceData) {
     var returnData = {};
@@ -27,7 +28,7 @@ function getSecurityModel(securitySourceData) {
 function getTrailingPerformance(trailingPerformanceSource) {
     var trailingPerformanceModel = {};
 
-    _.each(trailingPerformanceDictionary, (dictionaryItem, dictionaryItemKey)  => {
+    each(trailingPerformanceDictionary, (dictionaryItem, dictionaryItemKey)  => {
         trailingPerformanceModel[dictionaryItemKey] = dictionaryLookup(trailingPerformanceSource, trailingPerformanceDictionary[dictionaryItemKey].path);
     });
 
@@ -37,7 +38,7 @@ function getTrailingPerformance(trailingPerformanceSource) {
 function getFlatModel(sourceData, dictionary) {
     var flatModel = {};
 
-    _.each(dictionary, (dictionaryItem, dictionaryItemKey)  => {
+    each(dictionary, (dictionaryItem, dictionaryItemKey)  => {
         flatModel[dictionaryItemKey] = dictionaryLookup(sourceData, dictionary[dictionaryItemKey].path);
     });
 
@@ -48,7 +49,7 @@ function getHistoricalPerformance(historicalPerformanceSource) {
     var historicalPerformanceModel = getFlatModel(historicalPerformanceSource, totalReturnsDictionary);
 
     var returns = [];
-    _.each(historicalPerformanceModel.returns, function (returnArray) {
+    each(historicalPerformanceModel.returns, function (returnArray) {
         returns.push({ endDate: returnArray[0], value: returnArray[1] });
     });
     historicalPerformanceModel.returns = returns;
@@ -72,7 +73,7 @@ function getPortfolioModel(securitySourceData) {
 function getHoldingsModel(holdingsSourceData) {
     var holdings = [];
 
-    _.each(holdingsSourceData, holding => {
+    each(holdingsSourceData, holding => {
         holdings.push(getFlatModel(holding, holdingDictionary));
     });
 

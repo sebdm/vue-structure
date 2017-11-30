@@ -11,7 +11,7 @@ export default {
     this.transforms[transformId] = transform
   },
 
-  transform(transformDefinition, data, transformConfig) {
+  transform(transformDefinition, data, transformationConfig) {
     var transformationId = null;
 
     if (typeof transformDefinition === "string") {
