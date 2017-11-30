@@ -1,15 +1,17 @@
+import { each, get, filter, find } from 'lodash';
+
 export function dictionaryLookup(dataSource, path) {
     var currentObject = dataSource;
     
-    _.each(_parsePath(path), pathItem => {
+    each(_parsePath(path), pathItem => {
         if (pathItem.action === 'find') {
-            currentObject = _.find(currentObject, function (item) {
+            currentObject = find(currentObject, function (item) {
                 return item[pathItem.property] === pathItem.value;
             });
         } else if (pathItem.action === 'get') {
-            currentObject = _.get(currentObject, pathItem.value);
+            currentObject = get(currentObject, pathItem.value);
         } else if (pathItem.action === 'filter') {
-            currentObject = _.filter(currentObject, function (item) {
+            currentObject = filter(currentObject, function (item) {
                 return item[pathItem.property] === pathItem.value;
             });
         } else if (pathItem.action === 'first') {
@@ -25,7 +27,7 @@ export function dictionaryLookup(dataSource, path) {
 export function dictionaryLookupArray(dataSource, dataMap, dataItems) {
     var returnData = [];
 
-    _.each(dataItems, dataItemKey => {
+    each(dataItems, dataItemKey => {
         if (dataItemKey === '') {
             returnData.push('');
             return;

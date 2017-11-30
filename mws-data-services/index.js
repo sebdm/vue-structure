@@ -1,1 +1,1 @@
-export * from './services/get-xray-data'
+export * from './services/xray/get-xray-data'
